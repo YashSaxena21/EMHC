@@ -38,6 +38,7 @@ class Video(object):
     ):
         ret, frame = self.video.read()
         result = DeepFace.analyze(frame, actions=["emotion"], enforce_detection=False)
+        print(result)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         face = self.faceCascade.detectMultiScale(gray, 1.1, 4)
         for (x, y, w, self.h) in face:
@@ -101,3 +102,4 @@ class Video(object):
         db.session.commit()
         ret, jpg = cv2.imencode(".jpg", frame)
         return jpg.tobytes()
+        
